@@ -20,6 +20,11 @@ if (MSVC AND CMAKE_GENERATOR MATCHES "^Visual Studio ")
         ${CMAKE_CURRENT_LIST_DIR}/td_iv_msvc_warning_suppressions.props)
 endif()
 
+# Same suppressions as the props file above, for non-VS generators (Ninja CI).
+if (MSVC)
+    target_compile_options(td_iv PRIVATE /wd4005 /wd5038 /wd4265)
+endif()
+
 target_precompile_headers(td_iv PRIVATE ${src_loc}/iv/iv_pch.h)
 nice_target_sources(td_iv ${src_loc}
 PRIVATE
