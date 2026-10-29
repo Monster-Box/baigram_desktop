@@ -11,6 +11,9 @@ jobs:
     name: Ubuntu
     runs-on: ubuntu-latest
     if: github.ref_name == github.event.repository.default_branch
+    permissions:
+      contents: read
+      packages: write
 
     env:
       IMAGE_TAG: ghcr.io/${{ github.repository }}/centos_env:latest
@@ -20,6 +23,10 @@ jobs:
         uses: actions/checkout@v7
         with:
           submodules: recursive
+
+      - name: Lowercase image tag.
+        run: |
+          echo "IMAGE_TAG=ghcr.io/${GITHUB_REPOSITORY,,}/centos_env:latest" >> "$GITHUB_ENV"
 
       - name: First set up.
         run: |

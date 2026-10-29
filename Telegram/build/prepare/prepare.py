@@ -476,7 +476,7 @@ win:
     bash -c "pacman-key --init; pacman-key --populate; pacman -Syu --noconfirm"
     pacman -Syu --noconfirm --needed ^
         make ^
-        mingw-w64-x86_64-diffutils ^
+        diffutils ^
         mingw-w64-x86_64-gperf ^
         mingw-w64-x86_64-nasm ^
         mingw-w64-x86_64-perl ^
